@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { AppLoading } from "expo";
-import { bootstrap } from "./source/bootstrap";
+import { bootstrap } from "./bootstrap";
 
 
 export default function App() {
