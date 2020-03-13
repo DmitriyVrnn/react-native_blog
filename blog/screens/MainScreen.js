@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
-export const MainScreen = ({}) => {
+export const MainScreen = ({ navigation }) => {
+
+  const goToPostScreen = () => {
+    navigation.push('Post')
+  };
+
   return(
     <View style={styles.center}>
       <Text>MainScreen</Text>
+      <Button onPress={goToPostScreen} title="go"/>
     </View>
   )
 };
