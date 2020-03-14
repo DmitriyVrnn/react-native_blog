@@ -1,4 +1,6 @@
 import React from 'react';
+import { AppHeaderIcon } from "../components/AppHeaderIcon";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { Platform } from 'react-native';
@@ -21,6 +23,10 @@ export const AppNavigation = () => {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        headerRight: () => (
+          <HeaderButtons HeaderButtonComponent={AppHeaderIcon} title="Photo">
+            <Item title='Take photo' iconName='ios-camera' onPress={() => console.log('Press photo')}/>
+          </HeaderButtons>)
       }}>
         <Stack.Screen name="Blog" component={MainScreen}/>
         <Stack.Screen
@@ -34,7 +40,8 @@ export const AppNavigation = () => {
             },
             title: `Пост от ${new Date(route.params.postDate).toLocaleDateString()}`
           })}
-          name="Post" component={PostScreen}
+          name="Post"
+          component={PostScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

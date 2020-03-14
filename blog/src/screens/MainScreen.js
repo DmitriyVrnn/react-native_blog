@@ -5,7 +5,6 @@ import { Post } from "../components/Post";
 
 
 export const MainScreen = ({ navigation, }) => {
-
   const openPostHandler = (post) => {
     navigation.push('Post', {
       postId: post.id,
