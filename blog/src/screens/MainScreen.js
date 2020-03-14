@@ -9,6 +9,7 @@ export const MainScreen = ({ navigation, }) => {
     navigation.push('Post', {
       postId: post.id,
       postDate: post.date,
+      booked: post.booked,
     })
   };
 

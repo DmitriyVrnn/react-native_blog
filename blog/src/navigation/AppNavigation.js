@@ -23,12 +23,21 @@ export const AppNavigation = () => {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={AppHeaderIcon} title="Photo">
-            <Item title='Take photo' iconName='ios-camera' onPress={() => console.log('Press photo')}/>
-          </HeaderButtons>)
       }}>
-        <Stack.Screen name="Blog" component={MainScreen}/>
+        <Stack.Screen
+          name="Blog"
+          component={MainScreen}
+          options={{
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={AppHeaderIcon} title="Photo">
+                <Item title='Take photo' iconName='ios-camera' onPress={() => console.log('Press photo')}/>
+              </HeaderButtons>),
+            headerLeft: () => (
+              <HeaderButtons HeaderButtonComponent={AppHeaderIcon} title="Photo">
+                <Item title='Take photo' iconName='ios-menu' onPress={() => console.log('Press photo')}/>
+              </HeaderButtons>)
+          }}
+        />
         <Stack.Screen
           options={({route}) => ({
             headerStyle: {
@@ -38,7 +47,14 @@ export const AppNavigation = () => {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            title: `Пост от ${new Date(route.params.postDate).toLocaleDateString()}`
+            title: `Пост от ${new Date(route.params.postDate).toLocaleDateString()}`,
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={AppHeaderIcon} title="Photo">
+                <Item
+                  title='Booked'
+                  iconName={route.params.booked ? 'ios-star' : 'ios-star-outline'}
+                  onPress={() => console.log('Press photo')}/>
+              </HeaderButtons>)
           })}
           name="Post"
           component={PostScreen}
