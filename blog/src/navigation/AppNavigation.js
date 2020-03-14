@@ -12,7 +12,8 @@ const Stack = createStackNavigator();
 export const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Blog" screenOptions={{
+      <Stack.Navigator initialRouteName="Blog"
+      screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
         },
@@ -23,8 +24,7 @@ export const AppNavigation = () => {
       }}>
         <Stack.Screen name="Blog" component={MainScreen}/>
         <Stack.Screen
-          options={{
-            title: 'My Post',
+          options={({route}) => ({
             headerStyle: {
               backgroundColor: '#f4511e',
             },
@@ -32,7 +32,8 @@ export const AppNavigation = () => {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-          }}
+            title: `Пост от ${new Date(route.params.postDate).toLocaleDateString()}`
+          })}
           name="Post" component={PostScreen}
         />
       </Stack.Navigator>
