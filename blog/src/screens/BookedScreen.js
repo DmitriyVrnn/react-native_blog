@@ -4,7 +4,7 @@ import { DATA } from "../data";
 import { Post } from "../components/Post";
 
 
-export const BookedScreen = ({ navigation, }) => {
+export const BookedScreen = ({ navigation }) => {
   const openPostHandler = (post) => {
     navigation.push('Post', {
       postId: post.id,
@@ -13,10 +13,12 @@ export const BookedScreen = ({ navigation, }) => {
     })
   };
 
+  const filteredPosts = DATA.filter(post => post.booked);
+
   return (
     <View style={styles.wrapper}>
       <FlatList
-        data={DATA.filter(post => post.booked)}
+        data={filteredPosts}
         keyExtractor={post => post.id}
         renderItem={({ item }) => {
           return <Post post={item} onOpen={openPostHandler}/>

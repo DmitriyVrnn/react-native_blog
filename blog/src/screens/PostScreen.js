@@ -5,6 +5,7 @@ import { DATA } from "../data";
 
 
 export const PostScreen = ({ route }) => {
+  console.log(route)
   const post = DATA.find(post => post.id === route.params.postId);
 
   const removeHandler = () => {
