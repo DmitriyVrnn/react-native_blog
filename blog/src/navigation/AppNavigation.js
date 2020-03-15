@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 
-const BottomNavigator = createBottomTabNavigator();
+const BottomNavigator = Platform.OS === 'android' ? createMaterialBottomTabNavigator() : createBottomTabNavigator();
 
 const StackPostNavigator = () => {
   return (
