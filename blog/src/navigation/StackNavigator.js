@@ -11,7 +11,7 @@ import { CreateScreen } from "../screens/CreateScreen";
 
 const Stack = createStackNavigator();
 
-export const StackPostNavigator = ({ navigation }) => {
+export const StackPostNavigator = ({ navigation, route }) => {
   return (
     <Stack.Navigator
       initialRouteName="Blog"
@@ -44,7 +44,7 @@ export const StackPostNavigator = ({ navigation }) => {
           title: `Пост от ${new Date(route.params.postDate).toLocaleDateString()}`,
           headerRight: () => (
             <HeaderButtonsApp
-              onPress={() => console.log('Press')}
+              onPress={route.params.toggleHandler}
               iconName={route.params.booked ? 'ios-star' : 'ios-star-outline'}
               title='Booked'/>)
         })}
