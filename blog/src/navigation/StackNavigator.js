@@ -12,7 +12,6 @@ import { CreateScreen } from "../screens/CreateScreen";
 const Stack = createStackNavigator();
 
 export const StackPostNavigator = ({ navigation }) => {
-  console.log(navigation)
   return (
     <Stack.Navigator
       initialRouteName="Blog"
@@ -56,7 +55,7 @@ export const StackPostNavigator = ({ navigation }) => {
   )
 };
 
-export const StackBookedNavigator = () => {
+export const StackBookedNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
       initialRouteName="Booked"
@@ -81,6 +80,13 @@ export const StackBookedNavigator = () => {
         })}
       />
       <Stack.Screen
+        options={{
+          headerLeft: () => (
+            <HeaderButtonsApp
+              onPress={() => navigation.toggleDrawer()}
+              iconName='ios-menu'
+              title='Take photo'/>)
+        }}
         name="Booked"
         component={BookedScreen}
       />
