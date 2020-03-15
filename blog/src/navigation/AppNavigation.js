@@ -71,7 +71,6 @@ const StackPostNavigator = () => {
 const StackBookedNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Blog"
       screenOptions={{
         headerStyle: {
           backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
@@ -81,6 +80,10 @@ const StackBookedNavigator = () => {
           fontWeight: 'bold',
         },
       }}>
+      <Stack.Screen
+        name="Post"
+        component={PostScreen}
+      />
       <Stack.Screen
         name="Booked"
         component={BookedScreen}
