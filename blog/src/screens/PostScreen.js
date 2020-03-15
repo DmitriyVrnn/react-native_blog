@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Button, ScrollView, Alert } from 'react-native';
+
 import { THEME } from "../theme";
+
 import { DATA } from "../data";
 
 
 export const PostScreen = ({ route }) => {
-  console.log(route)
   const post = DATA.find(post => post.id === route.params.postId);
 
   const removeHandler = () => {
@@ -17,9 +18,9 @@ export const PostScreen = ({ route }) => {
           text: 'Отменить',
           style: 'cancel',
         },
-        {text: 'Удалить', style: 'destructive', onPress: () => {}},
+        { text: 'Удалить', style: 'destructive', onPress: () => {} },
       ],
-      {cancelable: false},
+      { cancelable: false },
     );
   };
 

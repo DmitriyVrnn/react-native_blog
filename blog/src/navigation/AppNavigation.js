@@ -4,32 +4,35 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { Platform } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Ionicons } from "@expo/vector-icons";
 
 import { MainScreen } from "../screens/MainScreen";
 import { PostScreen } from "../screens/PostScreen";
-import { THEME } from "../theme";
 import { HeaderButtonsApp } from "../components/HeaderButtonsApp";
 import { BookedScreen } from "../screens/BookedScreen";
-import { Ionicons } from "@expo/vector-icons";
+
+import { THEME } from "../theme";
 
 
 const Stack = createStackNavigator();
 
 const BottomNavigator = Platform.OS === 'android' ? createMaterialBottomTabNavigator() : createBottomTabNavigator();
 
+const navigatorOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
+  },
+  headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
+
 const StackPostNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Blog"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
-        },
-        headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}>
+      screenOptions={navigatorOptions}>
       <Stack.Screen
         name="Blog"
         component={MainScreen}
@@ -73,15 +76,7 @@ const StackBookedNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Booked"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
-        },
-        headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}>
+      screenOptions={navigatorOptions}>
       <Stack.Screen
         name="Post"
         component={PostScreen}
@@ -116,6 +111,7 @@ export const AppNavigation = () => {
         tabBarOptions={{
           activeTintColor: THEME.MAIN_COLOR,
           inactiveTintColor: 'gray',
+          shifting: true,
         }}
       >
         <BottomNavigator.Screen

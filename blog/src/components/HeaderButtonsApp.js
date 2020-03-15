@@ -1,6 +1,7 @@
 import React from 'react';
-import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+
+import { AppHeaderIcon } from "../components/AppHeaderIcon";
 
 
 export const HeaderButtonsApp = ({ onPress, title, iconName }) => {
