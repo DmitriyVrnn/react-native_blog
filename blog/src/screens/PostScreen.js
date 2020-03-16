@@ -4,18 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { THEME } from "../theme";
 
-import { DATA } from "../data";
-import { toggleBooked } from "../store/actions/post";
+import { removePost, toggleBooked } from "../store/actions/post";
 
 
 export const PostScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
-  const post = DATA.find(post => post.id === route.params.postId);
 
   const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === route.params.postId));
+  const post = useSelector(state => state.post.allPosts.find(post => post.id === route.params.postId));
 
   useEffect(() => {
-    navigation.setParams({ booked })
+    navigation.setOptions({ booked })
   }, [booked]);
 
   const toggleHandler = useCallback(() => {
@@ -35,11 +34,22 @@ export const PostScreen = ({ route, navigation }) => {
           text: 'Отменить',
           style: 'cancel',
         },
-        { text: 'Удалить', style: 'destructive', onPress: () => {} },
+        {
+          text: 'Удалить',
+          style: 'destructive',
+          onPress: () => {
+            navigation.goBack();
+            dispatch(removePost(route.params.postId))
+          }
+        },
       ],
       { cancelable: false },
     );
   };
+
+  if (!post) {
+    return null
+  }
 
   return (
     <ScrollView>
