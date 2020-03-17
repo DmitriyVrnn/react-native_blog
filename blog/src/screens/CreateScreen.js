@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { THEME } from "../theme";
 import { addPost } from "../store/actions/post";
+import { PhotoPicker } from "../components/PhotoPicker";
 
 
 export const CreateScreen = ({ navigation }) => {
@@ -47,6 +48,7 @@ export const CreateScreen = ({ navigation }) => {
             color={THEME.MAIN_COLOR}
             onPress={saveHandler}
           />
+          <PhotoPicker/>
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>
