@@ -18,8 +18,8 @@ export const PostScreen = ({ route, navigation }) => {
   }, [booked]);
 
   const toggleHandler = useCallback(() => {
-    dispatch(toggleBooked(route.params.postId))
-  }, [dispatch, route.params.postId]);
+    dispatch(toggleBooked(post))
+  }, [dispatch, post]);
 
   useEffect(() => {
     navigation.setParams({ toggleHandler })
@@ -38,7 +38,7 @@ export const PostScreen = ({ route, navigation }) => {
           text: 'Удалить',
           style: 'destructive',
           onPress: () => {
-            console.log(route.params.postId)
+            console.log(route.params.postId);
             dispatch(removePost(route.params.postId));
             navigation.goBack();
           }
