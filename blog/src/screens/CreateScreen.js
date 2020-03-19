@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
   View, Text, StyleSheet, TextInput,
@@ -10,16 +10,19 @@ import { PhotoPicker } from "../components/PhotoPicker";
 
 
 export const CreateScreen = ({ navigation }) => {
-  const [text, setText] = useState('');
   const dispatch = useDispatch();
+  const [text, setText] = useState('');
+  const [img, setImg] = useState('');
 
-  const img = 'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg'
+  const photoPickHandler = (uri) => {
+    setImg(uri)
+  };
 
   const saveHandler = () => {
     const post = {
       date: new Date().toJSON(),
       text: text,
-      img: img,
+      img,
       booked: false
     };
     dispatch(addPost(post));
@@ -38,17 +41,13 @@ export const CreateScreen = ({ navigation }) => {
             onChangeText={setText}
             multiline
           />
-          <Image
-            style={{ width: '100%', height: 200, marginBottom: 10 }}
-            source={{
-              uri: img,
-            }}/>
+          <PhotoPicker onPick={photoPickHandler}/>
           <Button
             title="Создать пост"
             color={THEME.MAIN_COLOR}
             onPress={saveHandler}
+            disabled={!text || !img}
           />
-          <PhotoPicker/>
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>

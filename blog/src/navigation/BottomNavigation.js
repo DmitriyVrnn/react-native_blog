@@ -35,4 +35,4 @@ export const BottomNavigation = () => {
       />
     </BottomNavigator.Navigator>
   )
-}
+};

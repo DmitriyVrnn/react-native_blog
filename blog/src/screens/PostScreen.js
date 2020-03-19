@@ -38,8 +38,9 @@ export const PostScreen = ({ route, navigation }) => {
           text: 'Удалить',
           style: 'destructive',
           onPress: () => {
+            console.log(route.params.postId)
+            dispatch(removePost(route.params.postId));
             navigation.goBack();
-            dispatch(removePost(route.params.postId))
           }
         },
       ],

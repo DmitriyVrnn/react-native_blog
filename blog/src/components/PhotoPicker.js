@@ -10,13 +10,13 @@ const askForPermissions = async () => {
     Permissions.CAMERA_ROLL
   );
   if (status !== 'granted') {
-    Alert.alert('Ошибка', 'Необходимы права на создание фото')
+    Alert.alert('Ошибка', 'Необходимы права на создание фото');
     return false;
   }
   return true;
 };
 
-export const PhotoPicker = ({}) => {
+export const PhotoPicker = ({ onPick }) => {
   const [image, setImage] = useState(null);
 
   const takePhoto = async () => {
@@ -28,6 +28,7 @@ export const PhotoPicker = ({}) => {
       aspect: [16, 9]
     });
     setImage(image.uri);
+    onPick(image.uri);
   };
 
   return (

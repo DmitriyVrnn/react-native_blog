@@ -20,6 +20,7 @@ export const StackPostNavigator = ({ navigation, route }) => {
         name="Blog"
         component={MainScreen}
         options={{
+          title: 'Все',
           headerRight: () => (
             <HeaderButtonsApp
               onPress={() => navigation.navigate('Create')}
@@ -81,6 +82,7 @@ export const StackBookedNavigator = ({ navigation }) => {
       />
       <Stack.Screen
         options={{
+          title: 'Избранное',
           headerLeft: () => (
             <HeaderButtonsApp
               onPress={() => navigation.toggleDrawer()}
